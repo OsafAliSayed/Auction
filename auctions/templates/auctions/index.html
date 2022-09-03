@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<!-- Title -->
+<div class="row mt-3">
+    <div class="col">
+        <h1 class="text-center">Active Listings</h1>
+    </div>
+</div>
+
+<!-- Message -->
+<div class="row">
+    <div class="col">
+        {% if message %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endif %}
+    </div>
+</div>
+<!-- Load all items in database  -->
+
+<div class="row mt-3">
+    {% for item in items %}
+    <div class="col-3 mt-4">
+        <form action="{% url 'index'%}" method="post">
+            {% csrf_token %}
+            <div class="card text-center border shadow" style="height:30rem">
+                <img class="card-img-top" src="{{ item.image }}" alt="Card image cap" height="286px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <h5 class="card-title">${{ item.bid }}</h5>
+                    <button type="submit" class="btn btn-primary" name="{{ item.title }}">Show Product</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

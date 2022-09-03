@@ -1,0 +1,16 @@
+body
+{
+    overflow-x:hidden;
+}
+.card-text,.card-title
+{
+    overflow: hidden;
+    max-width: 100ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-img-top
+{
+    object-fit:contain;
+}
